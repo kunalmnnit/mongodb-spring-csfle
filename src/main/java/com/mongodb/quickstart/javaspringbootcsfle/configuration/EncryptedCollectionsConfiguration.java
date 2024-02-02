@@ -12,6 +12,6 @@ import java.util.List;
  */
 public class EncryptedCollectionsConfiguration {
     public static final List<EncryptedEntity> encryptedEntities = List.of(
-            new EncryptedEntity("mydb", "persons", PersonEntity.class, "personDEK"),
-            new EncryptedEntity("mydb", "companies", CompanyEntity.class, "companyDEK"));
+            new EncryptedEntity("test", "persons", PersonEntity.class, "personDEK"),
+            new EncryptedEntity("test", "companies", CompanyEntity.class, "companyDEK"));
 }

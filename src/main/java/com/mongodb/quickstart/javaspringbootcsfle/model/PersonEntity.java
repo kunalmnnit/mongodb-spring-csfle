@@ -2,8 +2,10 @@ package com.mongodb.quickstart.javaspringbootcsfle.model;
 
 import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.EncryptionAlgorithms;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Encrypted;
+import org.springframework.data.mongodb.core.mapping.ExplicitEncrypted;
 
 /**
  * This is the entity class for the "persons" collection.
@@ -11,16 +13,16 @@ import org.springframework.data.mongodb.core.mapping.Encrypted;
  *
  * @see com.mongodb.quickstart.javaspringbootcsfle.components.EntitySpelEvaluationExtension
  */
-@Document("persons")
-@Encrypted(keyId = "#{mongocrypt.keyId(#target)}")
+//@Document("person")
+@Encrypted(keyId = "#{mongocrypt.keyId(#target)}", algorithm = EncryptionAlgorithms.AEAD_AES_256_CBC_HMAC_SHA_512_Deterministic)
 public class PersonEntity {
     @Id
     private ObjectId id;
     private String firstName;
     private String lastName;
-    @Encrypted(algorithm = "AEAD_AES_256_CBC_HMAC_SHA_512-Deterministic")
+//    @ExplicitEncrypted(algorithm = "AEAD_AES_256_CBC_HMAC_SHA_512-Deterministic")
     private String ssn;
-    @Encrypted(algorithm = "AEAD_AES_256_CBC_HMAC_SHA_512-Random")
+//    @ExplicitEncrypted(algorithm = "AEAD_AES_256_CBC_HMAC_SHA_512-Random")
     private String bloodType;
 
     public PersonEntity() {
